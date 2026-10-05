@@ -7,6 +7,25 @@ tmp/
 info/
 output/pdf/
 paper_ieee/main.pdf
+HANDOVER.md
+requirements-upstream.txt
+mkunet_architecture.png
+rerun_em.bat
+run_datasets.bat
+run_machineA.bat
+watchdog_machineA.ps1
+path A/runs/
+path A/shards/
+path A/rerun_em.ps1
+path A/run_new_datasets.ps1
+step1/environment/
+step1/deliverable2/make_figures.py
+step1/scripts/estimate_runtime.py
+step1/scripts/run_2x2.ps1
+step1/scripts/run_2x2.sh
+step1/scripts/validate_arch.py
+step1/scripts/verify_2x2.py
+paper_ieee/figures/*.png
 
 # --- datasets: large, redistributable from the original sources ---
 data/
@@ -24,11 +43,9 @@ results_polyp/
 All_Runs_Summary_Polyp.xlsx
 
 # --- extension run outputs ---
-# Checkpoints are excluded by *.pth above, but config.json / history.json /
-# result.json / train.log are kept deliberately: they are the evidence behind
-# every number in the report and proposal, and total under 1 MB.
+# Per-run histories, commands, configs, logs, and checkpoints are local records.
+# Keep only the curated aggregate tables and figures under path A/results/.
 path A/queue.log
-path A/runs/**/predictions/
 
 # --- LaTeX build artefacts ---
 *.aux

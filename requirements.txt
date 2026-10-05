@@ -1,7 +1,6 @@
 # MK-UNet — verified dependency set (CPU-only and CUDA)
 #
-# The upstream file is preserved as requirements-upstream.txt. It could not be
-# installed as-is, for three reasons found while reproducing this work:
+# The upstream requirements were insufficient for this reproduction:
 #   1. it lists no torch/torchvision at all, so it installs nothing that can run
 #      the model;
 #   2. it omits openpyxl, which pandas.to_excel() needs — evaluation crashed at
@@ -13,7 +12,7 @@
 # Every package below was confirmed by scanning the actual imports across
 # mkunet_network.py, train_polyp.py, test_polyp.py, utils/ and path A/.
 # See the README reproduction section for installation instructions and
-# step1/environment/pip_freeze.txt for the exact resolved versions used.
+# step1/deliverable1/environment/pip_freeze.txt for the resolved environment.
 #
 #   pip install -r requirements.txt
 #

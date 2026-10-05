@@ -1,8 +1,0 @@
-{
-  "run_id": "ClinicDB_MK_UNet_T_fixed_k13_auxFalse_e100_seed42_t20260822-065129",
-  "best_val_dice": 0.8353625062087059,
-  "best_epoch": 90,
-  "test_dice_at_best_val": 0.8706286854801639,
-  "train_time_s": 21432.71,
-  "params": 19878
-}

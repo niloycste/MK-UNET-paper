@@ -1,8 +1,0 @@
-{
-  "run_id": "ColonDB_MK_UNet_T_fixed_k135_auxFalse_e100_seed42_t20260826-040330",
-  "best_val_dice": 0.715650533669089,
-  "best_epoch": 90,
-  "test_dice_at_best_val": 0.7371259600081731,
-  "train_time_s": 17270.79,
-  "params": 27384
-}

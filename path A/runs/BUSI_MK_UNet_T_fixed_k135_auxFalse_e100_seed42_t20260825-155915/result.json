@@ -1,8 +1,0 @@
-{
-  "run_id": "BUSI_MK_UNet_T_fixed_k135_auxFalse_e100_seed42_t20260825-155915",
-  "best_val_dice": 0.8185388731268736,
-  "best_epoch": 58,
-  "test_dice_at_best_val": 0.770907569755948,
-  "train_time_s": 20307.97,
-  "params": 27384
-}

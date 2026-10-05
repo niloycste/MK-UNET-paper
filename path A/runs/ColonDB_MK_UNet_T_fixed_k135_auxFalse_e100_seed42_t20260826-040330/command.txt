@@ -1,1 +1,0 @@
-C:\Users\USER\.conda\envs\mkunetenv\python.exe path A\05_train.py --dataset ColonDB --data_root data/polyp/target --img_size 352 --routing_mode fixed --kernel_sizes 1 3 5 --epoch 100 --lr 0.0005 --aux_supervision False --runs 1 --seed 42 --device cpu

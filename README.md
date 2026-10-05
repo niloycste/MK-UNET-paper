@@ -1,12 +1,10 @@
 # MK-UNet
 
-Official Pytorch implementation of the paper [MK-UNet: Multi-kernel Lightweight CNN for Medical Image Segmentation](https://openaccess.thecvf.com/content/ICCV2025W/CVAMD/papers/Rahman_MK-UNet_Multi-kernel_Lightweight_CNN_for_Medical_Image_Segmentation_ICCVW_2025_paper.pdf) published in ICCV 2025 CVAMD
+This repository contains a reproduction and extension study built on the official PyTorch implementation of [MK-UNet: Multi-kernel Lightweight CNN for Medical Image Segmentation](https://openaccess.thecvf.com/content/ICCV2025W/CVAMD/papers/Rahman_MK-UNet_Multi-kernel_Lightweight_CNN_for_Medical_Image_Segmentation_ICCVW_2025_paper.pdf), published at ICCV 2025 CVAMD.
 [Md Mostafijur Rahman](https://mostafij-rahman.github.io/), [Radu Marculescu](https://radum.ece.utexas.edu/)
 <p>The University of Texas at Austin</p>
 
-[ARXIV](https://arxiv.org/abs/2509.18493) | [PAPER](https://openaccess.thecvf.com/content/ICCV2025W/CVAMD/papers/Rahman_MK-UNet_Multi-kernel_Lightweight_CNN_for_Medical_Image_Segmentation_ICCVW_2025_paper.pdf) | [Code](https://github.com/SLDGroup/MK-UNet)
-
-#### 🔍 **Check out our papers: [LoMix](https://github.com/SLDGroup/LoMix) [NeurIPS 2025], [EfficientMedNeXt](https://github.com/SLDGroup/EfficientMedNeXt) [MICCAI 2025], [EffiDec3D](https://github.com/SLDGroup/EffiDec3D) [CVPR 2025], [EMCAD](https://github.com/SLDGroup/EMCAD) [CVPR 2024], [PP-SAM](https://github.com/SLDGroup/PP-SAM) [CVPRW 2024], [G-CASCADE](https://github.com/SLDGroup/G-CASCADE) [WACV 2024], [MERIT](https://github.com/SLDGroup/MERIT) [MIDL 2023], [CASCADE](https://github.com/SLDGroup/CASCADE) [WACV 2023]**
+[ARXIV](https://arxiv.org/abs/2509.18493) | [PAPER](https://openaccess.thecvf.com/content/ICCV2025W/CVAMD/papers/Rahman_MK-UNet_Multi-kernel_Lightweight_CNN_for_Medical_Image_Segmentation_ICCVW_2025_paper.pdf) | [Original code](https://github.com/SLDGroup/MK-UNet)
 
 ## Local Reproduction and Path A Extension
 
@@ -23,12 +21,7 @@ The reproduction used the released polyp pipeline with `MK_UNet_T` on ClinicDB a
 
 The ClinicDB result is numerically consistent with the paper. The ColonDB result is not an exact reproduction of the paper result. The difference may come from the repository-default protocol, augmentation, preprocessing, random seed, or the lack of paper-exact multi-seed runs.
 
-The archived run logs and evaluation spreadsheets are in `step1/logs/` and
-`step1/results_polyp/`; the per-epoch curves are in `step1/deliverable2/figures/`.
-The separate report-source folder has been removed from this repository. The
-extension manuscript source is available at `paper_ieee/main.tex`. To reproduce
-the experiments, use the commands below; they write new outputs to the root-level
-`logs/` and `model_pth/` folders.
+The archived evaluation spreadsheets are [ClinicDB](step1/deliverable1/metrics/Results_ClinicDB_MK_UNet_T_bs8_lr0.0005_e200_augTrue_dsFalse_ca1_seed42_run1_t20260819-172738_ClinicDB_test.xlsx) and [ColonDB](step1/deliverable1/metrics/Results_ColonDB_MK_UNet_T_bs8_lr0.0005_e200_augTrue_dsFalse_ca1_seed42_run1_t20260820-140027_ColonDB_test.xlsx); comparison figures are in `step1/deliverable2/figures/`. The extension manuscript source is [paper_ieee/main.tex](paper_ieee/main.tex). Fresh training outputs go to root-level `logs/` and `model_pth/`; those generated files and model checkpoints are not tracked.
 
 ### Step 2 / Path A: MK-UNet-CC extension
 
@@ -70,13 +63,13 @@ In the preliminary batch-1 ClinicDB measurement, forward hooks verified that onl
 
 The current result should not be described as final proof that MK-UNet-CC is better than MK-UNet. The safe claim is narrower: **conditional sparse branch execution can reduce computation and measured CPU latency while keeping competitive ClinicDB performance in this preliminary single-seed study**. Final claims require full-budget, multi-seed runs and target-device latency tests.
 
-Key extension artifacts (results are a snapshot and may be refreshed as the sweep progresses):
+Key extension artifacts (the committed tables and figures are summary snapshots; per-run logs, command records, and checkpoints are intentionally excluded):
 
 - `path A/results/all_runs.csv` — collected run table
 - `path A/results/cost_table.json` — parameter and FLOP comparison
 - `path A/results/sparse_verification.json` — executed/skipped branch counts and latency
 - `path A/results/mkunet_cc_architecture.png` — extension architecture figure
-- `paper_ieee/main.tex` — source for the current MK-UNet-CC extension manuscript
+- [paper_ieee/main.tex](paper_ieee/main.tex) — manuscript source for the extension study
 
 ## Reproducing the experiments
 
@@ -90,11 +83,11 @@ conda activate mkunetenv
 pip install -r requirements.txt
 ```
 
-The default requirements select CUDA 11.3 PyTorch wheels; they can also run on a CPU-only machine, although they use more memory. For a CPU-only install, follow the CPU wheel alternatives documented at the top of `requirements.txt`. The resolved environment used for the archived reproduction is recorded in `step1/environment/pip_freeze.txt`.
+The default requirements select CUDA 11.3 PyTorch wheels; they can also run on a CPU-only machine, although they use more memory. For a CPU-only install, follow the CPU wheel alternatives documented at the top of `requirements.txt`. The archived environment record is in `step1/deliverable1/environment/`.
 
 ### Data
 
-Datasets are not committed. Download them from their original sources and prepare the following split structure (images and masks must have matching filenames):
+Datasets are not committed. The split ClinicDB and ColonDB downloads linked by the original project are available from [ClinicDB](https://drive.google.com/drive/folders/1FPJr5f91uUCikxMvkwtZSEnYHemTZq1P?usp=share_link) and [ColonDB](https://drive.google.com/drive/folders/1u4_8dMztnEBUaX-w3XfUR3jXLBhpccPA?usp=share_link). Prepare the following split structure (images and masks must have matching filenames):
 
 ```text
 data/polyp/target/ClinicDB/{train,val,test}/{images,masks}/
@@ -152,67 +145,16 @@ Run outputs are written to `path A/runs/`; summary metrics and analysis are in `
 
 ### Optional: package the broader multi-machine sweep
 
-The separate shard workflow generates machine-specific scripts and packages under `dist/`. Generate three shards and build the packages with:
+The optional shard workflow generates machine assignments and deployment packages under ignored `dist/`. Generate three shards and build the packages with:
 
 ```powershell
 python -W ignore "path A/13_make_shards.py" --shards 3
 python -W ignore "path A/14_package_machines.py"
 ```
 
-See `HANDOVER.md` for how to run and collect those packages. They are generated deployment copies, not required for reproducing the Step 1 baseline or the Path A ClinicDB queue.
+The generated packages and machine-specific run instructions are not part of this source repository; they are not required for the Step 1 baseline or Path A ClinicDB queue.
 
-## Architecture
-
-<p align="center">
-<img src="mkunet_architecture.png" width=100% height=40% 
-class="center">
-</p>
-
-## Quantitative Results
-
-## Qualitative Results
-
-## Usage:
-### Recommended environment:
-**Please run the following commands.**
-```
-conda create -n mkunetenv python=3.8
-conda activate mkunetenv
-
-pip install torch==1.11.0+cu113 torchvision==0.12.0+cu113 torchaudio==0.11.0 --extra-index-url https://download.pytorch.org/whl/cu113
-
-pip install mmcv-full -f https://download.openmmlab.com/mmcv/dist/cu113/torch1.11.0/index.html
-
-pip install -r requirements.txt
-
-```
-
-### Data preparation:
-
-- **ClinicDB dataset:**
-Download the splited ClinicDB dataset from [Google Drive](https://drive.google.com/drive/folders/1FPJr5f91uUCikxMvkwtZSEnYHemTZq1P?usp=share_link) and move into './data/polyp/' folder.
-
-- **ColonDB dataset:**
-Download the splited ColonDB dataset from [Google Drive](https://drive.google.com/drive/folders/1u4_8dMztnEBUaX-w3XfUR3jXLBhpccPA?usp=share_link) and move into './data/polyp/' folder.
-
-### Training:
-```
-cd into MK-UNet
-CUDA_VISIBLE_DEVICES=0 python -W ignore train_polyp.py --network MK_UNet
-
-```
-
-### Testing:
-```
-cd into MK-UNet 
-CUDA_VISIBLE_DEVICES=0 python -W ignore test_polyp.py --network MK_UNet --run_id <your run_id>
-
-```
-
-## Acknowledgement
-We are very grateful for these excellent works [EMCAD](https://github.com/SLDGroup/EMCAD), [CASCADE](https://github.com/SLDGroup/CASCADE), [MERIT](https://github.com/SLDGroup/MERIT), [G-CASCADE](https://github.com/SLDGroup/G-CASCADE), [PP-SAM](https://github.com/SLDGroup/PP-SAM), [PraNet](https://github.com/DengPingFan/PraNet), and [Polyp-PVT](https://github.com/DengPingFan/Polyp-PVT), which have provided the basis for our framework.
-
-## Citations
+## Citation
 
 ``` 
 @inproceedings{rahman2025mk,
@@ -223,3 +165,5 @@ We are very grateful for these excellent works [EMCAD](https://github.com/SLDGro
   year={2025}
 }
 ```
+
+The model implementation and original paper are by Md Mostafijur Rahman and Radu Marculescu. This repository's reproduction and MK-UNet-CC experiments are a separate study and should not be attributed to the original paper authors.

@@ -1,1 +1,0 @@
-C:\Users\USER\.conda\envs\mkunetenv\python.exe extension\train_extension.py --routing_mode fixed --dataset ClinicDB --epoch 100 --runs 1 --seed 42 --device cpu --aux_supervision True

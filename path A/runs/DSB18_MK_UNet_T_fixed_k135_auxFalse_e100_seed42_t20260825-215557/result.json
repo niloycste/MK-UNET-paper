@@ -1,8 +1,0 @@
-{
-  "run_id": "DSB18_MK_UNet_T_fixed_k135_auxFalse_e100_seed42_t20260825-215557",
-  "best_val_dice": 0.9010173411518103,
-  "best_epoch": 63,
-  "test_dice_at_best_val": 0.8935229231172533,
-  "train_time_s": 20943.39,
-  "params": 27384
-}
