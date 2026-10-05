@@ -1,0 +1,186 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage[margin=0.62in]{geometry}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{amsmath}
+\usepackage[hidelinks]{hyperref}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{textcomp}
+\usepackage{hyperref}
+
+\titleformat{\section}{\normalfont\large\bfseries}{\thesection}{0.55em}{}
+\titlespacing*{\section}{0pt}{0.65em}{0.2em}
+\titleformat{\subsection}{\normalfont\normalsize\bfseries}{\thesubsection}{0.5em}{}
+\titlespacing*{\subsection}{0pt}{0.45em}{0.15em}
+\setlist[itemize]{leftmargin=1.25em,itemsep=0pt,topsep=1pt,parsep=0pt}
+\setlist[enumerate]{leftmargin=1.5em,itemsep=0pt,topsep=1pt,parsep=0pt}
+\setlength{\parindent}{1.2em}
+\setlength{\parskip}{0pt}
+\pagestyle{plain}
+\raggedbottom
+\linespread{0.97}
+
+\begin{document}
+
+\begin{center}
+{\LARGE\bfseries MK-UNet Replication}\\[3pt]
+{\large Experimental Execution Summary}\\[4pt]
+{\small Step 1 - Deliverable 1}\\[3pt]
+{\normalsize M. Mohaiminul Islam}\\[3pt]
+{\footnotesize Paper: Rahman \& Marculescu, MK-UNet (ICCV 2025) \quad--\quad
+Code: \href{https://github.com/SLDGroup/MK-UNet.git}{SLDGroup/MK-UNet}
+\end{center}
+\vspace{0.25em}
+
+\noindent  ClinicDB and ColonDB each completed 200 training epochs. Benchmark values below come from the saved run logs and the released \texttt{test\_polyp.py} evaluation.
+
+\section{Setup}
+
+\begin{itemize}
+\item Host: Windows 11, Intel i9-14900, 32 GB RAM, CPU-only execution.
+\item Software: Python 3.8.20 and PyTorch 1.11.0+cu113, executed with \texttt{--device cpu}.
+\item Code version: \texttt{SLDGroup/MK-UNet}.
+\item Code-audit and protocol details are summarized in the Step 1 technical report.
+\item Environment setup and package records are stored under \texttt{environment}.
+\item Run logs and metric files: \texttt{deliverable1}.
+\end{itemize}
+
+The original requirements file was not directly usable in the CPU-only Python 3.8 environment. The setup notes record three dependency changes: \texttt{SimpleITK==2.2.1}, installing \texttt{albumentations} without dependencies to avoid a second OpenCV package, and ignoring unused \texttt{numpy}/\texttt{transformers} pins for the polyp pipeline. The environment was rebuilt once from the saved package list and then checked again with the import smoke test.
+
+\section{Code Changes for Controlled Runs}
+
+The released code was adapted for CPU execution and repeatable experiments. The changes were:
+
+\begin{itemize}
+\item six hard-coded \texttt{.cuda()} calls changed to \texttt{.to(device)};
+\item \texttt{map\_location} added when loading checkpoints;
+\item \texttt{device}, \texttt{seed}, and \texttt{runs} options added;
+\item the augmentation option changed to use a real Boolean parser;
+
+\end{itemize}
+
+These changes were made for execution control. The architecture, loss, and metric formulas were kept unchanged. A separate validation script measured the parameter counts of all five model sizes and found values that match the paper to the shown precision.
+
+\section{Data and Training Protocol}
+
+\begin{table}[h]
+\centering\small
+\begin{tabular}{@{}lrrr@{}}
+\toprule
+Dataset & Train & Validation & Test \\
+\midrule
+ClinicDB & 489 & 61 & 62 \\
+ColonDB & 303 & 38 & 38 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Both datasets follow the 80:10:10 split used in the paper. ColonDB has only 38 validation and 38 test images, so its checkpoint selection and test mean may be more sensitive to individual cases than ClinicDB.
+
+The paper and repository do not use the same training settings. The benchmark runs in this study kept the repository default training hyperparameters but used one deterministic run with seed 42.
+
+\begin{table}[h]
+\centering\small
+\begin{tabular}{@{}lll@{}}
+\toprule
+Setting & Paper & Run used here \\
+\midrule
+Learning rate & $1\times10^{-4}$ & $5\times10^{-4}$ + cosine scheduler \\
+Batch size & 16 & 8 \\
+Augmentation & none stated & rotation and flips enabled \\
+Runs & five-run mean & one run, seed 42 \\
+Epochs & 200 & 200 \\
+Optimizer & AdamW & AdamW \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{Run Commands}
+
+\begin{verbatim}
+python -W ignore train_polyp.py --network MK_UNet_T --dataset ClinicDB \
+    --epoch 200 --runs 1 --seed 42 --device cpu
+
+python -W ignore train_polyp.py --network MK_UNet_T --dataset ColonDB \
+    --epoch 200 --runs 1 --seed 42 --device cpu
+\end{verbatim}
+
+The best-validation checkpoint from each run was evaluated with:
+
+\begin{verbatim}
+python -W ignore test_polyp.py --run_id <run_id> --network MK_UNet_T \
+    --dataset_name <ClinicDB|ColonDB> --device cpu
+\end{verbatim}
+
+\section{Run Log}
+
+\begin{enumerate}
+\item Smoke test: A 2-epoch ClinicDB CPU run was used to check data loading, forward and backward passes, validation, test evaluation, checkpoint saving and loading, and log creation. This run was not used as a benchmark result.
+
+\item ClinicDB attempt 1: The run stopped at epoch 4 because a second CPU training process was started at the same time, causing the machine to run out of memory. No benchmark result was taken from this run.
+
+\item ClinicDB benchmark run: The run completed all 200 epochs with seed 42. The best validation DICE was 0.8679 at epoch 179.
+
+\item ColonDB benchmark run: The run completed all 200 epochs with seed 42. The best validation DICE was 0.7686 at epoch 181.
+\end{enumerate}
+
+Full per-epoch logs are stored in \texttt{logs/}. No benchmark log was overwritten.
+
+\section{Verified Benchmark Metrics}
+
+The final values were obtained by running \texttt{test\_polyp.py} on the best-validation checkpoint from each benchmark run. The standalone evaluation gave the same DICE values recorded by the training-time evaluation path: 0.9109 for ClinicDB and 0.7832 for ColonDB. Both benchmark runs used MK-UNet-T; the standard MK-UNet model was not trained in this study.
+
+\begin{table}[h]
+\centering\small
+\begin{tabular}{@{}lrrrr@{}}
+\toprule
+Setting & Paper DICE & Our DICE & Our IoU & Difference \\
+\midrule
+MK-UNet-T / ClinicDB & 91.26 & 91.09 & 84.63 & -0.17 \\
+MK-UNet-T / ColonDB & 85.03 & 78.32 & 69.46 & -6.71 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The ClinicDB result is close to the average reported in the paper. However, since we used only one seed and the default settings from the released code instead of the exact settings from the paper, we should describe this result as being numerically consistent with the published result rather than as an exact reproduction.
+
+The ColonDB result is 6.71 DICE points lower than the published average. The training reached a stable performance level, which suggests that there was no major optimization problem. However, since we used only one run, we cannot determine whether the difference was caused by the training settings, data augmentation, preprocessing, or random seed. The paper reports a standard deviation of 1--4\% across its five runs, but it does not provide a specific standard deviation for ColonDB. Therefore, we cannot determine whether the difference is statistically significant.
+
+A useful next step would be to run ColonDB using the exact settings reported in the paper and test several random seeds. As a smaller diagnostic, we can first disable the default data augmentation in the released code and see whether this changes the result.
+
+\section{Runtime and Scope Limitations}
+
+\begin{itemize}
+\item All experiments were run on a CPU. Therefore, our runtime results cannot be directly compared with the paper's results obtained using an RTX A6000 GPU.
+
+\item We used only one random seed for each dataset, while the paper reports the average results from five runs.
+
+\item We used the default training settings provided in the released code instead of exactly matching the settings reported in the paper. We clearly report this difference.
+
+\item Each training run used about 7 GB of memory. When two training jobs were run at the same time, the first ClinicDB experiment stopped unexpectedly.
+
+\item The released code includes the polyp segmentation pipeline for ClinicDB and ColonDB. We could not find direct training pipelines for BUSI, ISIC18, DSB18, and EM in the checked code. Therefore, we could not reproduce the reported average across all six datasets using the released code.
+
+\item The released training script evaluates the test set after every epoch. However, we did not use test-set results to select the best checkpoint or tune the hyperparameters.
+\end{itemize}
+
+\section{Code Audit Findings}
+
+The static and runtime checks produced three additional findings:
+
+\begin{enumerate}
+\item The model has three additional prediction heads, but they are not used in the binary setting. Our gradient check showed that 31 parameters in \texttt{out1/out2/out3} did not receive any gradients in this configuration.
+
+\item In MK-UNet-T, the channel attention layer uses a hidden width of only 1 in four out of five decoder stages because of the selected reduction ratios. This creates a very small attention bottleneck in the tiny model.
+
+\item The same spatial-attention module is shared across all decoder stages, while each stage has its own channel-attention module. This implementation detail is not clearly described in the paper.
+\end{enumerate}
+
+These findings are described in more detail in the Step 1 technical report.
+
+\end{document}

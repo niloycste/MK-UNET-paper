@@ -1,0 +1,24 @@
+{
+  "run_id": "ClinicDB_MK_UNet_T_fixed_k35_auxFalse_e100_seed42_t20260823-163819",
+  "checkpoint": "best.pth",
+  "routing_mode": "fixed",
+  "kernel_sizes": [
+    3,
+    5
+  ],
+  "aux_supervision": false,
+  "params": 26550,
+  "trained_on": "ClinicDB",
+  "evaluated_on": "ClinicDB",
+  "split": "test",
+  "cross_dataset": false,
+  "n_images": 62,
+  "dice": 0.9018114185140979,
+  "iou": 0.8363826733923727,
+  "sensitivity": 0.9244532258064515,
+  "specificity": 0.9927677419354837,
+  "precision": 0.8949177419354837,
+  "hd95": 22.076075806451612,
+  "routing": null,
+  "uncertainty": null
+}

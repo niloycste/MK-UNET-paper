@@ -1,0 +1,8 @@
+{
+  "run_id": "EM_MK_UNet_T_fixed_k135_auxFalse_e100_seed42_t20260826-091305",
+  "best_val_dice": 0.9077524145444235,
+  "best_epoch": 63,
+  "test_dice_at_best_val": 0.9129811724026998,
+  "train_time_s": 1129.8,
+  "params": 27384
+}

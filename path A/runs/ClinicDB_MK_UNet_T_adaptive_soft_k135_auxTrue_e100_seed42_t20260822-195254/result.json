@@ -1,0 +1,8 @@
+{
+  "run_id": "ClinicDB_MK_UNet_T_adaptive_soft_k135_auxTrue_e100_seed42_t20260822-195254",
+  "best_val_dice": 0.8745291560399727,
+  "best_epoch": 98,
+  "test_dice_at_best_val": 0.8997248391951284,
+  "train_time_s": 35805.93,
+  "params": 30588
+}

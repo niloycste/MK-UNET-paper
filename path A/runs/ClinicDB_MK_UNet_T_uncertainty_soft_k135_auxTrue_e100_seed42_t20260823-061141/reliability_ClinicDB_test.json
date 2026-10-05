@@ -1,0 +1,108 @@
+{
+  "run_id": "ClinicDB_MK_UNet_T_uncertainty_soft_k135_auxTrue_e100_seed42_t20260823-061141",
+  "routing_mode": "uncertainty_soft",
+  "aux_supervision": true,
+  "evaluated_on": "ClinicDB",
+  "split": "test",
+  "cross_dataset": false,
+  "checkpoint": "best.pth",
+  "n_pixels": 7682048,
+  "pixel_error_rate": 0.01457397818914956,
+  "ece": 0.0067346307521479985,
+  "brier": 0.01161983609199524,
+  "error_auroc": 0.9721400989520047,
+  "entropy_error_corr": 0.47951812194062443,
+  "per_image_corr": 0.85809656093457,
+  "reliability_bins": [
+    {
+      "conf_mid": 0.5166666666666666,
+      "accuracy": 0.4944401092469762,
+      "avg_conf": 0.5166370272636414,
+      "count": 10252
+    },
+    {
+      "conf_mid": 0.55,
+      "accuracy": 0.5275470933765445,
+      "avg_conf": 0.5501192212104797,
+      "count": 9874
+    },
+    {
+      "conf_mid": 0.5833333333333333,
+      "accuracy": 0.551452486459872,
+      "avg_conf": 0.5832647681236267,
+      "count": 10155
+    },
+    {
+      "conf_mid": 0.6166666666666667,
+      "accuracy": 0.5843520782396088,
+      "avg_conf": 0.6166342496871948,
+      "count": 10225
+    },
+    {
+      "conf_mid": 0.6499999999999999,
+      "accuracy": 0.6024543378995434,
+      "avg_conf": 0.6501036286354065,
+      "count": 10512
+    },
+    {
+      "conf_mid": 0.6833333333333333,
+      "accuracy": 0.6098111843888336,
+      "avg_conf": 0.6833628416061401,
+      "count": 11069
+    },
+    {
+      "conf_mid": 0.7166666666666667,
+      "accuracy": 0.6330459019249194,
+      "avg_conf": 0.7169294953346252,
+      "count": 11481
+    },
+    {
+      "conf_mid": 0.75,
+      "accuracy": 0.6475952919167511,
+      "avg_conf": 0.7501938343048096,
+      "count": 12829
+    },
+    {
+      "conf_mid": 0.7833333333333333,
+      "accuracy": 0.6692247566261635,
+      "avg_conf": 0.7836870551109314,
+      "count": 14073
+    },
+    {
+      "conf_mid": 0.8166666666666667,
+      "accuracy": 0.693040293040293,
+      "avg_conf": 0.8170967698097229,
+      "count": 16380
+    },
+    {
+      "conf_mid": 0.85,
+      "accuracy": 0.7297447561283801,
+      "avg_conf": 0.8504700660705566,
+      "count": 19785
+    },
+    {
+      "conf_mid": 0.8833333333333333,
+      "accuracy": 0.7645581359403377,
+      "avg_conf": 0.8841537833213806,
+      "count": 25879
+    },
+    {
+      "conf_mid": 0.9166666666666667,
+      "accuracy": 0.7751499708021448,
+      "avg_conf": 0.9180161356925964,
+      "count": 37674
+    },
+    {
+      "conf_mid": 0.95,
+      "accuracy": 0.8214371899718461,
+      "avg_conf": 0.9525396227836609,
+      "count": 74590
+    },
+    {
+      "conf_mid": 0.9833333333333334,
+      "accuracy": 0.9955233169575296,
+      "avg_conf": 0.9985946416854858,
+      "count": 7407270
+    }
+  ]
+}

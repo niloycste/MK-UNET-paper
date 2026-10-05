@@ -1,0 +1,1 @@
+C:\Users\USER\.conda\envs\mkunetenv\python.exe extension\train_extension.py --routing_mode uncertainty_soft --aux_supervision True --dataset ClinicDB --epoch 1 --runs 1 --seed 999 --device cpu

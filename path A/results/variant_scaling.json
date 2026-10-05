@@ -1,0 +1,85 @@
+{
+  "input": "1x3x256x256",
+  "rows": [
+    {
+      "variant": "MK_UNet_T",
+      "channels": [
+        4,
+        8,
+        16,
+        24,
+        32
+      ],
+      "params_fixed": 27384,
+      "params_sparse": 30588,
+      "gflops_fixed": 0.066780324,
+      "gflops_sparse": 0.030677463,
+      "flop_saving_pct": 54.06,
+      "router_param_overhead_pct": 11.7
+    },
+    {
+      "variant": "MK_UNet_S",
+      "channels": [
+        8,
+        16,
+        32,
+        48,
+        80
+      ],
+      "params_fixed": 93050,
+      "params_sparse": 107382,
+      "gflops_fixed": 0.132326776,
+      "gflops_sparse": 0.076166921,
+      "flop_saving_pct": 42.44,
+      "router_param_overhead_pct": 15.4
+    },
+    {
+      "variant": "MK_UNet",
+      "channels": [
+        16,
+        32,
+        64,
+        96,
+        160
+      ],
+      "params_fixed": 315566,
+      "params_sparse": 371562,
+      "gflops_fixed": 0.327543024,
+      "gflops_sparse": 0.231372529,
+      "flop_saving_pct": 29.36,
+      "router_param_overhead_pct": 17.74
+    },
+    {
+      "variant": "MK_UNet_M",
+      "channels": [
+        32,
+        64,
+        128,
+        192,
+        320
+      ],
+      "params_fixed": 1150166,
+      "params_sparse": 1371666,
+      "gflops_fixed": 0.977022304,
+      "gflops_sparse": 0.800912705,
+      "flop_saving_pct": 18.03,
+      "router_param_overhead_pct": 19.26
+    },
+    {
+      "variant": "MK_UNet_L",
+      "channels": [
+        64,
+        128,
+        256,
+        384,
+        512
+      ],
+      "params_fixed": 3758118,
+      "params_sparse": 4491618,
+      "gflops_fixed": 3.245095872,
+      "gflops_sparse": 2.909960609,
+      "flop_saving_pct": 10.33,
+      "router_param_overhead_pct": 19.52
+    }
+  ]
+}

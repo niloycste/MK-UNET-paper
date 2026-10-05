@@ -1,0 +1,140 @@
+{
+  "shards": 3,
+  "epochs": 200,
+  "seeds": 1,
+  "total_ref_hours": 2799.2754085578113,
+  "bins": [
+    {
+      "id": 1,
+      "speed": 1.0,
+      "ref_hours": 932.9655857214626,
+      "wall_hours": 932.9655857214626,
+      "units": [
+        {
+          "variant": "base",
+          "dataset": "ISIC18",
+          "seed": 42,
+          "hours": 892.634431715877
+        },
+        {
+          "variant": "T",
+          "dataset": "ColonDB",
+          "seed": 42,
+          "hours": 30.00670756646217
+        },
+        {
+          "variant": "base",
+          "dataset": "EM",
+          "seed": 42,
+          "hours": 10.324446439123397
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "speed": 1.0,
+      "ref_hours": 932.2602064713595,
+      "wall_hours": 932.2602064713595,
+      "units": [
+        {
+          "variant": "S",
+          "dataset": "ISIC18",
+          "seed": 42,
+          "hours": 360.5970544000321
+        },
+        {
+          "variant": "base",
+          "dataset": "BUSI",
+          "seed": 42,
+          "hours": 222.83596897774666
+        },
+        {
+          "variant": "base",
+          "dataset": "ColonDB",
+          "seed": 42,
+          "hours": 147.1137234732988
+        },
+        {
+          "variant": "S",
+          "dataset": "DSB18",
+          "seed": 42,
+          "hours": 93.14699814863481
+        },
+        {
+          "variant": "S",
+          "dataset": "ColonDB",
+          "seed": 42,
+          "hours": 59.42945226112194
+        },
+        {
+          "variant": "T",
+          "dataset": "DSB18",
+          "seed": 42,
+          "hours": 47.031137387216965
+        },
+        {
+          "variant": "T",
+          "dataset": "EM",
+          "seed": 42,
+          "hours": 2.1058718233082225
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "speed": 1.0,
+      "ref_hours": 934.0496163649901,
+      "wall_hours": 934.0496163649901,
+      "units": [
+        {
+          "variant": "base",
+          "dataset": "ClinicDB",
+          "seed": 42,
+          "hours": 237.42115768463074
+        },
+        {
+          "variant": "base",
+          "dataset": "DSB18",
+          "seed": 42,
+          "hours": 230.57930380708922
+        },
+        {
+          "variant": "T",
+          "dataset": "ISIC18",
+          "seed": 42,
+          "hours": 182.07016805685672
+        },
+        {
+          "variant": "S",
+          "dataset": "ClinicDB",
+          "seed": 42,
+          "hours": 95.91089820359281
+        },
+        {
+          "variant": "S",
+          "dataset": "BUSI",
+          "seed": 42,
+          "hours": 90.01892731528514
+        },
+        {
+          "variant": "T",
+          "dataset": "ClinicDB",
+          "seed": 42,
+          "hours": 48.42666666666666
+        },
+        {
+          "variant": "T",
+          "dataset": "BUSI",
+          "seed": 42,
+          "hours": 45.451733519735804
+        },
+        {
+          "variant": "S",
+          "dataset": "EM",
+          "seed": 42,
+          "hours": 4.170761111132902
+        }
+      ]
+    }
+  ]
+}

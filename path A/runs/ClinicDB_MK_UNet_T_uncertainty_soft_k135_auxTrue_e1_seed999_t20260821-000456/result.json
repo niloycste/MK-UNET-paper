@@ -1,0 +1,8 @@
+{
+  "run_id": "ClinicDB_MK_UNet_T_uncertainty_soft_k135_auxTrue_e1_seed999_t20260821-000456",
+  "best_val_dice": 0.3126950439883935,
+  "best_epoch": 1,
+  "test_dice_at_best_val": 0.26130559571857287,
+  "train_time_s": 391.86,
+  "params": 30618
+}

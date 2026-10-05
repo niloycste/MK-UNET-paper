@@ -1,0 +1,42 @@
+{
+  "routing_mode": "uncertainty_soft",
+  "init_from": null,
+  "strict_init": false,
+  "network": "MK_UNet_T",
+  "kernel_sizes": [
+    1,
+    3,
+    5
+  ],
+  "dataset": "ClinicDB",
+  "router_reduction": 4,
+  "router_temperature": 1.0,
+  "anneal_epochs": 0,
+  "aux_supervision": true,
+  "aux_loss_weight": [
+    1.0,
+    0.5,
+    0.3,
+    0.2
+  ],
+  "epoch": 100,
+  "lr": 0.0005,
+  "batchsize": 8,
+  "test_batchsize": 8,
+  "img_size": 352,
+  "clip": 0.5,
+  "augmentation": true,
+  "color_image": true,
+  "ca_min_squeeze": 1,
+  "runs": 1,
+  "seed": 42,
+  "device": "cpu",
+  "num_workers": 4,
+  "data_root": "./data/polyp/target",
+  "out_root": "C:\\MK-UNet\\extension\\runs",
+  "train_path": "./data/polyp/target/ClinicDB/train/",
+  "test_path": "./data/polyp/target/ClinicDB/",
+  "run_id": "ClinicDB_MK_UNet_T_uncertainty_soft_k135_auxTrue_e100_seed42_t20260823-061141",
+  "params": 30618,
+  "torch": "1.11.0+cu113"
+}

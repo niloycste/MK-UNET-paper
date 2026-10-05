@@ -1,0 +1,45 @@
+__pycache__/
+*.pyc
+.vscode/
+.cleanup_backups/
+dist/
+tmp/
+info/
+output/pdf/
+paper_ieee/main.pdf
+
+# --- datasets: large, redistributable from the original sources ---
+data/
+dataset/
+
+# --- model weights: large binaries, regenerate by training ---
+*.pth
+
+# --- Step 1 artefacts produced by the original train_polyp.py / test_polyp.py ---
+# The curated copies inside step1/deliverable1/ are committed instead.
+logs/
+model_pth/
+predictions_polyp/
+results_polyp/
+All_Runs_Summary_Polyp.xlsx
+
+# --- extension run outputs ---
+# Checkpoints are excluded by *.pth above, but config.json / history.json /
+# result.json / train.log are kept deliberately: they are the evidence behind
+# every number in the report and proposal, and total under 1 MB.
+path A/queue.log
+path A/runs/**/predictions/
+
+# --- LaTeX build artefacts ---
+*.aux
+*.log
+*.out
+*.toc
+*.bbl
+*.blg
+*.synctex.gz
+*.fls
+*.fdb_latexmk
+
+# --- archives ---
+*.zip

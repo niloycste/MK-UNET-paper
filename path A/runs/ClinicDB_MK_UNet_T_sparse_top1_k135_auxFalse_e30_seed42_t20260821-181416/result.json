@@ -1,0 +1,8 @@
+{
+  "run_id": "ClinicDB_MK_UNet_T_sparse_top1_k135_auxFalse_e30_seed42_t20260821-181416",
+  "best_val_dice": 0.8135981879761962,
+  "best_epoch": 26,
+  "test_dice_at_best_val": 0.8371860192668054,
+  "train_time_s": 8685.42,
+  "params": 30588
+}

@@ -1,0 +1,1 @@
+C:\Users\USER\.conda\envs\mkunetenv\python.exe extension\train_extension.py --routing_mode sparse_top1 --init_from extension/runs/ClinicDB_MK_UNet_T_adaptive_soft_k135_auxFalse_e200_seed42_t20260821-001221/best.pth --epoch 60 --lr 0.0003 --anneal_epochs 20 --aux_supervision False --dataset ClinicDB --runs 1 --seed 42 --device cpu
