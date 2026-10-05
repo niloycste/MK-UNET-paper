@@ -25,9 +25,10 @@ The ClinicDB result is numerically consistent with the paper. The ColonDB result
 
 The archived run logs and evaluation spreadsheets are in `step1/logs/` and
 `step1/results_polyp/`; the per-epoch curves are in `step1/deliverable2/figures/`.
-The report source files are in `Pdf files/`. Those report PDFs are not included in
-this checkout. To reproduce the experiments, use the commands below; they write
-new outputs to the root-level `logs/` and `model_pth/` folders.
+The separate report-source folder has been removed from this repository. The
+extension manuscript source is available at `paper_ieee/main.tex`. To reproduce
+the experiments, use the commands below; they write new outputs to the root-level
+`logs/` and `model_pth/` folders.
 
 ### Step 2 / Path A: MK-UNet-CC extension
 
@@ -75,7 +76,7 @@ Key extension artifacts (results are a snapshot and may be refreshed as the swee
 - `path A/results/cost_table.json` — parameter and FLOP comparison
 - `path A/results/sparse_verification.json` — executed/skipped branch counts and latency
 - `path A/results/mkunet_cc_architecture.png` — extension architecture figure
-- `submission_texfile_pdf/MKUNet_All_Revised_v4/Step2_PathA_Research_Proposal.pdf` — final Path A proposal with the method framing, literature positioning, and limitations
+- `paper_ieee/main.tex` — source for the current MK-UNet-CC extension manuscript
 
 ## Reproducing the experiments
 
